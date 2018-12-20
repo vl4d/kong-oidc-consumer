@@ -12,11 +12,12 @@ X-Userinfo: {"preferred_username":"alice",
 "email": "alice@wonderland.com","id":"60f65308-3510-40ca-83f0-e9c0151cc680","sub":"60f65308-3510-40ca-83f0-e9c0151cc680"}
 ```
 
-Ensure that `email` is one of the scopes configured on the `kong-oidc` plugin as this is the default.
+Ensure that `email` is one of the scopes configured on the `kong-oidc` plugin as this is the default lookup for this plugin.
 
-The plugin will then lookup the consumer based on a field within the `X-Userinfo` header (it is a configuration option with the default being email) to match a consumer's username. If the consumer doesn't exist it will create this consumer within kong. 
+The plugin will then lookup the consumer based on a field within the `X-Userinfo` header (it is a configuration option with the default being email) to match a consumer's username. If the consumer doesn't exist it will create this consumer within kong (based on a flag). 
 
-The plugin then sets the `ngx.ctx.authenticated_consumer` variable, which can be using in other Kong plugins:
+The plugin then sets the `ngx.ctx.authenticated_consumer` variable, as well as the consumer headers and continues to the next plugin in pipe.
+
 ```
 ngx.ctx.authenticated_consumer = {{matched_consumer_found_or_created}}
 ```
@@ -30,11 +31,16 @@ ngx.ctx.authenticated_consumer = {{matched_consumer_found_or_created}}
 - [`kong-oidc` plugin](https://github.com/nokia/kong-oidc)
 
 
-## Installation
+## Installation 
+----
+-- TODO push to LUA rocks --
 
 If you're using `luarocks` execute the following:
 
      luarocks install kong-oidc-consumer
+----
+
+Copy the `oidc-consumer` folder from the `/kong/plugins/` folder to your lua path.
 
 You also need to set the `KONG_PLUGINS` environment variable to contain the oidc-consumer plugin
 
