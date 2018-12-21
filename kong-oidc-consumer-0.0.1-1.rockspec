@@ -1,5 +1,5 @@
 package = "kong-oidc-consumer"
-version = "0.0.1-0"
+version = "0.0.1-1"
 source = {
     url = "git://github.com/vl4d/kong-oidc-consumer",
     tag = "v0.0.1",
