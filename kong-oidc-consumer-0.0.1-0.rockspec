@@ -10,7 +10,9 @@ description = {
     detailed = [[
         kong-oidc-consumer is a Kong sister plugin for adding or linking consumer based on email (username) from userInfo.
 
-        It is based on response of kong-oidc plugin which is used for implementing the OpenID Connect Relying Party.
+        It is based on response of kong-oidc luarock which is also a kong plugin used for implementing the OpenID Connect Relying Party.
+
+        the kong-oidc luarock can be found here: (https://github.com/nokia/kong-oidc)
 
         When used as an OpenID Connect Relying Party it authenticates users against an OpenID Connect Provider using OpenID Connect Discovery and the Basic Client Profile (i.e. the Authorization Code flow).
 
