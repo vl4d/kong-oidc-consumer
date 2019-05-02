@@ -1,6 +1,6 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local singletons = require "kong.singletons"
-local responses = require "kong.tools.responses"
+local kong_response = require "kong.response"
 local kong_utils = require "kong.tools.utils"
 local constants = require "kong.constants"
 
@@ -70,7 +70,7 @@ local function handleOidcHeader(oidcUserInfo, config, ngx)
                                                 usernameForLookup, true)
 
     if err then
-      return responses.send_HTTP_INTERNAL_SERVER_ERROR(err)
+      return kong_response.send(500, err)
     end
 
     if consumer then 
